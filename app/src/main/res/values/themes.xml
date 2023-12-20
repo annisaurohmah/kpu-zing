@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Proyek_uas" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/yellow</item>
+         <item name="tabBackground">@color/darkBlue</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorSecondary">@color/white</item>
+    </style>
+
+    <style name="Base.Theme.Proyek_uas.ActionBar" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/darkBlue</item>
+        <item name="tabBackground">@color/darkBlue</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="Widget.Material3.ActionBar.Solid">
+        <item name="background">@color/darkBlue</item> <!-- Latar belakang action bar -->
+        <item name="titleTextColor">@color/white</item> <!-- Warna teks action bar -->
+    </style>
+
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/white</item>
+    </style>
+
+    <style name="Theme.Proyek_uas" parent="Base.Theme.Proyek_uas" />
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Theme attributes -->
+    </style>
+</resources>

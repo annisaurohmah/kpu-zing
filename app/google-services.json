@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "660733653929",
+    "project_id": "proyek-uas-32382",
+    "storage_bucket": "proyek-uas-32382.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660733653929:android:bd2eaf0c6f45a830c7cab8",
+        "android_client_info": {
+          "package_name": "com.example.proyek_uas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuOV7eqW6myJFXuPSzem3db4DqT5gtmCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
