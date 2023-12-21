@@ -32,7 +32,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Eliana Amelia"
-                style="@style/title_14"/>
+                android:textColor="@color/yellow"
+                android:textStyle="bold"
+                style="@style/title_18"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -41,16 +43,23 @@
             android:layout_height="1dp"
             android:background="@color/yellow"
             android:layout_marginVertical="3dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All Movies"
-            android:layout_margin="50px"
-            style="@style/title_20"/>
+            android:text="All Movies 🎬"
+            android:textColor="@color/yellow"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            style="@style/title_18"
+            android:textStyle="bold"
+            android:textSize="24sp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rv_movie"
+            android:layout_margin="8dp"
             android:orientation="horizontal"
             tools:listitem="@layout/item_movie"
             tools:itemCount="4"/>

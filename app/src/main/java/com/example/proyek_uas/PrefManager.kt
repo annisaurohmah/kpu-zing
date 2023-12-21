@@ -1,6 +1,5 @@
 package com.example.proyek_uas
 
-import android.accounts.AccountManager.KEY_PASSWORD
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.firebase.auth.FirebaseAuth
@@ -8,17 +7,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class PrefManager private constructor(context: Context) {
     private val sharedPreferences: SharedPreferences
-    private val firestore = FirebaseFirestore.getInstance()
-    private val userCollectionRef = firestore.collection("users")
     private val auth = FirebaseAuth.getInstance()
-    private val FAVORITE_RED = 1
-    private val FAVORITE_WHITE = 2
+
 
     companion object {
         private const val PREFS_FILENAME = "AuthAppPrefs"
         private const val KEY_IS_LOGGED_IN = "isLoggedIn"
         private const val KEY_USERNAME = "username"
         private const val KEY_EMAIL = "email"
+        private const val KEY_ID = "idUser"
         private const val KEY_PASSWORD = "password"// Add new key for email
         @Volatile
         private var instance: PrefManager? = null
@@ -36,23 +33,10 @@ class PrefManager private constructor(context: Context) {
             Context.MODE_PRIVATE)
     }
 
-
     fun saveState(favoriteState: Boolean) {
         val editor = sharedPreferences.edit()
         editor.putBoolean("State", favoriteState)
         editor.apply()
-    }
-
-    fun readState(): Boolean {
-        // Retrieve the stored value, defaulting to false if not found
-        val storedValue = sharedPreferences.all["State"] ?: false
-
-        // Handle different types (boolean or integer)
-        return when (storedValue) {
-            is Boolean -> storedValue
-            is Int -> storedValue != 0 // Assuming non-zero values represent true
-            else -> false // Default to false if the type is unexpected
-        }
     }
 
 
@@ -73,6 +57,11 @@ class PrefManager private constructor(context: Context) {
         editor.putString(KEY_USERNAME, username)
         editor.apply()
     }
+    fun saveIdUser(idUser: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(KEY_ID, idUser)
+        editor.apply()
+    }
     fun savePassword(password: String) {
         val editor = sharedPreferences.edit()
         editor.putString(KEY_PASSWORD, password)
@@ -83,6 +72,9 @@ class PrefManager private constructor(context: Context) {
     fun getUsername(): String {
         return sharedPreferences.getString(KEY_USERNAME, "") ?: ""
     }
+    fun getIdUser(): String {
+        return sharedPreferences.getString(KEY_ID, "") ?: ""
+    }
     fun getPassword(): String {
         return sharedPreferences.getString(KEY_PASSWORD, "") ?: ""
     }
@@ -92,20 +84,6 @@ class PrefManager private constructor(context: Context) {
         editor.apply()
     }
 
-    fun checkUsernameAvailability(username: String, callback: (Boolean) -> Unit) {
-        val usersRef = FirebaseFirestore.getInstance().collection("users")
-        usersRef.whereEqualTo("username", username)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val isUsernameAvailable = task.result?.isEmpty ?: true
-                    callback(isUsernameAvailable)
-                } else {
-                    // Handle error
-                    callback(false)
-                }
-            }
-    }
     fun saveEmail(email: String) {
         val editor = sharedPreferences.edit()
         editor.putString(KEY_EMAIL, email)

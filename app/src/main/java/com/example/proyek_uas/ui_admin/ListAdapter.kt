@@ -1,10 +1,8 @@
 package com.example.proyek_uas.ui_admin
 
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyek_uas.Movie
@@ -21,9 +19,9 @@ class ListAdapter(private val context: Context, private val listData: List<Movie
             with(binding) {
                 // Lakukan binding data ke tampilan
                 titleTextView.text = data.title
-                rating.text = data.rating.toString()
+                rating.text = "⭐ " + data.rating.toString()
                 duration.text = data.duration.toString() + " minutes"
-                Glide.with(context).load(data.poster + "?uniqueId=${System.currentTimeMillis()}")
+                Glide.with(context).load(data.poster)
                     .centerCrop().into(imageView)
 
                 // Atur listener untuk onClick

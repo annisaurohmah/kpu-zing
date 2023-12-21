@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.proyek_uas.databinding.FragmentLoginBinding
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 // TODO: Rename parameter arguments, choose names that match
@@ -86,7 +84,7 @@ class LoginFragment : Fragment() {
                 if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(
                         requireContext(),
-                        "Please fill the blank column",
+                        "Please fill in all the fields",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
@@ -123,13 +121,14 @@ class LoginFragment : Fragment() {
                         // Retrieve the first document (assuming usernames are unique)
                         val userDocument = userDocuments[0]
                         val email = userDocument.getString("email")
-
+                        val idUser = userDocument.getString("id")
                         // Use Firebase Authentication to log in
                         prefManager.signInWithEmailPassword(email!!, inputPassword, inputUsername) { authTask, message ->
                                 if (authTask) {
                                     // Successfully logged in
+                                    prefManager.saveIdUser(idUser!!)
                                     callback(true)
-                                    Log.d("Login", "Successfully logged in")
+                                    Log.d("Login", "${prefManager.getIdUser()}")
                                 } else {
                                     // Failed to log in
                                     callback(false)
@@ -163,11 +162,11 @@ class LoginFragment : Fragment() {
     private fun checkLoginStatus() {
         val isLoggedIn = prefManager.isLoggedIn()
         if (isLoggedIn) {
-            Toast.makeText(requireContext(), "Login berhasil",
+            Toast.makeText(requireContext(), "Login success",
                 Toast.LENGTH_SHORT).show()
             (requireActivity() as? MainActivity)?.navigateToHomeActivity()
         } else {
-            Toast.makeText(requireContext(), "Login gagal",
+            Toast.makeText(requireContext(), "Login fail",
                 Toast.LENGTH_SHORT).show()
         }
     }

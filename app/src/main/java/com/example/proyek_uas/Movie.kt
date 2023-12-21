@@ -1,6 +1,5 @@
 package com.example.proyek_uas
 
-import android.net.Uri
 
 data class Movie (
     var id:String ="",

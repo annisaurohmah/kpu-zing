@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView android:id="@+id/card_elemental"
-    android:layout_marginHorizontal="8dp"
-    android:layout_width="180dp"
+    android:layout_width="190dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:cardCornerRadius="8dp"
@@ -12,24 +11,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
-        android:background="@color/darkBlue"
+        android:padding="8dp"
+        android:background="@color/darkBlue2"
         android:orientation="vertical">
     <ImageView
         android:id="@+id/elemental"
-        android:layout_width="140dp"
+        android:layout_width="160dp"
         android:layout_height="170dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/elemental2"
         android:scaleType="centerCrop"/>
     <TextView
         android:id="@+id/title_elemental"
-        style="@style/title_14"
+        style="@style/title_18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="8dp"
         android:text="Elemental"
         android:maxLines="1"
+        android:textColor="@color/white"
         android:ellipsize="end"/>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -43,11 +43,6 @@
             android:text="4.9"
             style="@style/text"
             android:textColor="@color/yellow"/>
-        <ImageView
-            android:paddingHorizontal="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_star_24"/>
     </LinearLayout>
 </LinearLayout>
 </androidx.cardview.widget.CardView>

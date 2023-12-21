@@ -1,25 +1,17 @@
 package com.example.proyek_uas.ui_admin
 
-import android.annotation.SuppressLint
+
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.OpenableColumns
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide
 import com.example.proyek_uas.Movie
-import com.example.proyek_uas.R
 import com.example.proyek_uas.databinding.ActivityAddBinding
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -32,24 +24,14 @@ class AddActivity : AppCompatActivity() {
 
     //firebase
     private val firestore = FirebaseFirestore.getInstance()
-
     private val movieCollectionRef = firestore.collection("movies")
-    //nampung id
-    private var updateId = ""
-    //nampung list dari data suara
-    private val movieListLiveData: MutableLiveData<List<Movie>> by lazy {
-        MutableLiveData<List<Movie>>()
-    }
 
-    val storageRef = FirebaseStorage.getInstance().reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // creating a storage reference
         with(binding){
-
             btnUpload.setOnClickListener{
                 selectImage()
             }
@@ -57,13 +39,12 @@ class AddActivity : AppCompatActivity() {
             btnSave.setOnClickListener {
                 if(txtTitle.text!!.isEmpty() || txtDesc.text!!.isEmpty() ||  txtDirector.text!!.isEmpty() ||
                     txtStar.text!!.isEmpty() || txtDuration.text!!.isEmpty() || txtRating.text!!.isEmpty() || txtWriter.text!!.isEmpty()){
-                    Toast.makeText(this@AddActivity, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddActivity, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
                 } else if ((txtRating.text.toString().toFloat() !in 0.0..5.0)){
                     Toast.makeText(this@AddActivity, "Please fill with correct range in Rating", Toast.LENGTH_SHORT).show()
                 } else if(ImageUri == null){
                     Toast.makeText(this@AddActivity, "Please upload an image poster", Toast.LENGTH_SHORT).show()
-                }
-                    else {
+                } else {
                     uploadImage()
                     startActivity(Intent(this@AddActivity, ListActivity::class.java))
                 }
@@ -71,16 +52,15 @@ class AddActivity : AppCompatActivity() {
             }
 
                 btnCancel.setOnClickListener {
-                startActivity(Intent(this@AddActivity, ListActivity::class.java))
-                            }
+                    startActivity(Intent(this@AddActivity, ListActivity::class.java))
+                }
                 btnBack.setOnClickListener {
-                startActivity(Intent(this@AddActivity, ListActivity::class.java))
+                    startActivity(Intent(this@AddActivity, ListActivity::class.java))
                 }
         }
     }
 
     private fun uploadImage() {
-
         val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Uploading file...")
         progressDialog.setCancelable(false)
@@ -135,7 +115,6 @@ class AddActivity : AppCompatActivity() {
         }
     }
 
-
     private fun selectImage() {
         val intent = Intent()
         intent.type = "image/*"
@@ -153,24 +132,6 @@ class AddActivity : AppCompatActivity() {
         }
     }
 
-
-
-    private fun getAllBudgets(){
-        observeBudgetChanges()
-    }
-
-    private fun observeBudgetChanges(){
-        movieCollectionRef.addSnapshotListener{ snapshot, error ->
-            if (error != null) {
-                Log.d("MainActivity", "Error listening for movie change: ", error)
-                return@addSnapshotListener
-            }
-            val movies = snapshot?.toObjects(Movie::class.java)
-            if (movies!= null) {
-                movieListLiveData.postValue(movies)
-            }
-        }
-    }
     // dihandle untuk kondisi sukses, akan mereturn docRef
     private fun addData(movie: Movie) {
         movieCollectionRef.add(movie)
@@ -182,39 +143,10 @@ class AddActivity : AppCompatActivity() {
                     .addOnFailureListener{
                         Log.d("MainActivity", "Error update movie id", it)
                     }
-                resetForm()
             }
             .addOnFailureListener{
                 Log.d("MainActivity", "Error add movie", it)
             }
-    }
-
-    private fun updateData(movie: Movie){
-        movie.id = updateId
-        movieCollectionRef.document(updateId).set(movie)
-            .addOnFailureListener{
-                Log.d("MainActivity", "Error update data movie", it)
-            }
-    }
-
-    private fun deleteData(movie: Movie){
-        if (movie.id.isEmpty()) {
-            Log.d("MainActivity", "Error delete data empty ID", return)
-        }
-
-        movieCollectionRef.document(movie.id).delete()
-            .addOnFailureListener{
-                Log.d("MainActivity", "Error delete data budget")
-            }
-    }
-    //    override fun onResume() {
-//        super.onResume()
-//        getAllNotes()
-//    }
-    private fun resetForm() {
-        with(binding){
-
-        }
     }
 
 }

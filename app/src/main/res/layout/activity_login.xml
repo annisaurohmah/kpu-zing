@@ -64,7 +64,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/login_text"
                 android:text="for Admin"
                 android:layout_marginBottom="48dp"
-                style="@style/title_14" />
+                style="@style/title_18" />
 
 <!--            field for login-->
             <com.google.android.material.textfield.TextInputLayout
@@ -137,6 +137,7 @@
             android:layout_height="wrap_content"
             android:text="Don't have an account?"
             android:layout_marginRight="5dp"
+            android:textSize="14sp"
             android:textAlignment="center"
             style="@style/text"/>
         <TextView
@@ -146,6 +147,8 @@
             android:text="Register as User"
             android:layout_toRightOf="@+id/text_login"
             style="@style/text"
+            android:textColor="@color/yellow"
+            android:textSize="14sp"
             android:textStyle="bold"/>
     </RelativeLayout>
 

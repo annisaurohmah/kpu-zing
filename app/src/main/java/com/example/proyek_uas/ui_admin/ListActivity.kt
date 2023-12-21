@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toolbar
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -63,13 +62,13 @@ class ListActivity : AppCompatActivity() {
 
         itemAdapter = ListAdapter(this, listViewData) { item ->
             // Handle item click event
-            // Misalnya, buka detail catatan atau lakukan tindakan lain
+            // buka detail
             updateId = item.id
             val IntentToForm = Intent(this, EditActivity::class.java)
                 .apply {
                     putExtra(EXTRA_ID, item.id)
                 }
-            Log.d("Inii apaaa yaa", "${updateId}")
+            Log.d("ListActivity", "ID yang diklik : ${updateId}")
             startActivity(IntentToForm)
         }
 
@@ -84,14 +83,7 @@ class ListActivity : AppCompatActivity() {
             recyclerView.adapter = itemAdapter
 
             }
-
-//            listView.onItemLongClickListener =
-//                AdapterView.OnItemLongClickListener { adapterView, view, i, id ->
-//                    val item = adapterView.adapter.getItem(i) as Note
-//                    delete(item)
-//                    true
-//                }
-            }
+    }
 
     private fun getAllMovies() {
         observeMovieChanges()

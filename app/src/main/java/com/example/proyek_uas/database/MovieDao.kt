@@ -22,7 +22,7 @@ interface MovieDao {
     @Delete
     fun delete(mo: MovieR)
 
-    @get:Query("SELECT * from movie_table ORDER BY id ASC")
+    @get:Query("SELECT * from movie_table")
     val allMovies: LiveData<List<MovieR>>
 
     @Query("SELECT * FROM movie_table WHERE id = :movieId")

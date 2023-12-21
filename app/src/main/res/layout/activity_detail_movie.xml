@@ -32,7 +32,7 @@
             android:text="Details Movie"
             android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/title_14" />
+            style="@style/title_18" />
         <ImageView
             android:id="@+id/btn_love"
             android:layout_width="wrap_content"
@@ -88,16 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="23 minutes | 4.9"
-                    style="@style/text"
-                    android:textSize="14sp"/>
-
-                <ImageView
-                    android:layout_below="@id/txt_title"
-                    android:layout_toEndOf="@+id/text_des"
-                    android:padding="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_star_24"/>
+                    style="@style/text" />
 
                 <TextView
                     android:id="@+id/judul_story"
@@ -129,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="Director"
-                    style="@style/title_14"
+                    style="@style/title_18"
                     android:textColor="@color/yellow"
                     android:layout_below="@id/txt_des"
                     android:layout_marginTop="48dp"
@@ -141,7 +132,7 @@
                     android:layout_marginLeft="32dp"
                     android:layout_toRightOf="@id/director"
                     android:text="Peter Sohn"
-                    style="@style/title_14"
+                    style="@style/text"
                     android:layout_below="@id/txt_des"
                     android:layout_marginVertical="4dp"/>
                 <View
@@ -156,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="Writer"
-                    style="@style/title_14"
+                    style="@style/title_18"
                     android:textColor="@color/yellow"
                     android:layout_below="@id/line_yellow4"
                     android:layout_marginVertical="4dp"/>
@@ -167,13 +158,13 @@
                     android:layout_marginLeft="32dp"
                     android:layout_toRightOf="@id/writer"
                     android:text="John H."
-                    style="@style/title_14"
+                    style="@style/text"
                     android:layout_below="@id/line_yellow4"
                     android:layout_marginVertical="4dp"/>
 
                 <View
                     android:id="@+id/line_yellow5"
-                    android:layout_below="@+id/writer"
+                    android:layout_below="@+id/name_writer"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightGrey"
@@ -183,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="Stars"
-                    style="@style/title_14"
+                    style="@style/title_18"
                     android:textColor="@color/yellow"
                     android:layout_below="@id/line_yellow5"
                     android:layout_marginVertical="4dp"/>
@@ -194,7 +185,7 @@
                     android:layout_marginLeft="32dp"
                     android:layout_toRightOf="@id/stars"
                     android:text="Leah L."
-                    style="@style/title_14"
+                    style="@style/text"
                     android:layout_below="@id/line_yellow5"
                     android:layout_marginVertical="4dp"/>
 

@@ -38,6 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextColor="@color/white"
+            android:backgroundTint="@color/darkBlue"
+            app:tabTextAppearance="@style/text"
             app:tabSelectedTextColor="@color/yellow"
             app:layout_constraintTop_toBottomOf="@id/line_yellow" />
 
@@ -46,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:labelFor="@id/view_pager"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -56,16 +59,21 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/loginAdmin"
+        style="@style/title_18"
+        android:textSize="14sp"
         android:text="or"/>
     <TextView
         android:id="@+id/loginAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login as Admin"
+        style="@style/title_18"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="150px"
+        android:textColor="@color/yellow"
         android:textStyle="bold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,37 +2,26 @@ package com.example.proyek_uas
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.transition.Transition
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Database
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.SimpleTarget
 import com.example.proyek_uas.databinding.FragmentHomeBinding
-import com.example.proyek_uas.ui_admin.ListActivity
 import com.example.room1.database.MovieDao
 import com.example.room1.database.MovieR
 import com.example.room1.database.MovieRoomDatabase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -55,13 +44,9 @@ class HomeFragment : Fragment() {
     private lateinit var prefManager: PrefManager
     private lateinit var manager: RecyclerView.LayoutManager
     private val listViewData = ArrayList<Movie>()
-    private val listViewDataOff = ArrayList<MovieR>()
     private lateinit var itemAdapter: HomeAdapter
     private val firestore = FirebaseFirestore.getInstance()
     private val movieCollectionRef = firestore.collection("movies")
-
-    //nampung id
-    private var updateId = ""
 
     //nampung list dari data suara
     private val movieListLiveData: MutableLiveData<List<Movie>> by lazy {
@@ -125,8 +110,6 @@ class HomeFragment : Fragment() {
 
 
         itemAdapter = HomeAdapter(requireContext(), listViewData) { item ->
-            // Handle item click event
-            // Misalnya, buka detail catatan atau lakukan tindakan lain
             val intent = Intent(requireContext(), DetailMovieActivity::class.java).apply {
                 putExtra("EXTRA_ID", item.id)
                 putExtra("FROM_HOME_FRAGMENT", true)
@@ -144,8 +127,10 @@ class HomeFragment : Fragment() {
         fetchFilmFromFirebase()
 
         with(binding) {
+
+            Log.d("MovieDetails123", "${prefManager.getIdUser()}")
             username.setText(prefManager.getUsername())
-            getAllMovies()
+            fetchData()
             rvMovie.layoutManager =
                 GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false);
             rvMovie.adapter = itemAdapter
@@ -156,10 +141,12 @@ class HomeFragment : Fragment() {
     private fun fetchData() {
         if (isNetworkAvailable()) {
             // Jika online, ambil data dari Firestore
-            fetchFilmFromFirebase()
+            getAllMovies()
+            observeMovieChanges()
         } else {
             // Jika offline, ambil data dari Room
-            getAllMovies()
+            getAllMoviesM()
+
         }
     }
 
@@ -181,6 +168,21 @@ class HomeFragment : Fragment() {
             listViewData.addAll(movies)
             itemAdapter.notifyDataSetChanged()
             Log.d("ListActivity", "Number of movies: ${movies.size}")
+        }
+    }
+
+    private fun observeMovieChanges() {
+        movieCollectionRef.addSnapshotListener { snapshot, error ->
+            if (error != null) {
+                Log.d("MainActivity", "Error listening for suara change: ", error)
+                return@addSnapshotListener
+            }
+
+            val movies = snapshot?.toObjects(Movie::class.java)
+            if (movies != null) {
+                movieListLiveData.postValue(movies)
+
+            }
         }
     }
 
@@ -208,6 +210,39 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun getAllMoviesM() {
+        mMovieDao.allMovies.observe(requireActivity()) { notes ->
+            listViewData.clear()
+            listViewData.addAll(convertMovieRListToMovieCollection(notes))
+            itemAdapter.notifyDataSetChanged()
+
+            Log.d("ListActivity", "Number of notes: ${notes.size}")
+        }
+
+
+    }
+
+    // Function to save the image locally and return the local path
+    fun convertMovieRToMovie(movieR: MovieR): Movie {
+        return Movie(
+            id = movieR.id,
+            title = movieR.title,
+            poster = movieR.poster,
+            rating = movieR.rating,
+            description = movieR.description,
+            director = movieR.director,
+            writer = movieR.writer,
+            star = movieR.star,
+            duration = movieR.duration,
+            isFavorite = movieR.isFavorite
+        )
+
+
+    }
+
+    fun convertMovieRListToMovieCollection(movieRList: List<MovieR>): Collection<Movie> {
+        return movieRList.map { convertMovieRToMovie(it) }
+    }
     override fun onResume() {
         super.onResume()
         fetchData()

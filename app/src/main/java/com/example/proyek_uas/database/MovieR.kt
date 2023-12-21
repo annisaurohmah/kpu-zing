@@ -12,9 +12,9 @@ data class MovieR (
     @NonNull
     var id:String ="",
     @ColumnInfo(name = "title")
-    val title: String,
+    val title: String ="",
     @ColumnInfo(name = "description")
-    val description: String,
+    val description: String="",
     @ColumnInfo(name = "poster")
     var poster:String = "",
     @ColumnInfo(name = "rating")
