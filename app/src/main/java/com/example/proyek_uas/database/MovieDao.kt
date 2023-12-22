@@ -11,22 +11,22 @@ import androidx.room.Update
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(movie: MovieR)
+    fun insert(movie: Movie)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFilm(film: List<MovieR>)
+    suspend fun insertFilm(film: List<Movie>)
 
     @Update
-    fun update(movie: MovieR)
+    fun update(movie: Movie)
 
     @Delete
-    fun delete(mo: MovieR)
+    fun delete(mo: Movie)
 
     @get:Query("SELECT * from movie_table")
-    val allMovies: LiveData<List<MovieR>>
+    val allMovies: LiveData<List<Movie>>
 
     @Query("SELECT * FROM movie_table WHERE id = :movieId")
-    fun getMovieById(movieId: String): MovieR?
+    fun getMovieById(movieId: String): Movie?
 
     @Query("DELETE FROM movie_table")
     suspend fun deleteAllFilm()

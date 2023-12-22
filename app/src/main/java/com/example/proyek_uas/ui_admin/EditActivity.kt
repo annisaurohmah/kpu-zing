@@ -9,10 +9,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.core.net.toUri
-import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
-import com.example.proyek_uas.Movie
 import com.example.proyek_uas.databinding.ActivityEditBinding
+import com.example.room1.database.Movie
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat

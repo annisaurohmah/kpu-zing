@@ -2,7 +2,6 @@ package com.example.proyek_uas
 
 import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,13 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyek_uas.databinding.FragmentFavoriteBinding
 import com.example.room1.database.MovieDao
-import com.example.room1.database.MovieR
+import com.example.room1.database.Movie
 import com.example.room1.database.MovieRoomDatabase
-import com.google.firebase.Firebase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.storage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
@@ -188,10 +185,10 @@ class FavoriteFragment : Fragment() {
             }
 
             snapshot?.let { documents ->
-                val filmList = mutableListOf<MovieR>()
+                val filmList = mutableListOf<Movie>()
 
                 for (document in documents) {
-                    val filmEntity = document.toObject(MovieR::class.java)
+                    val filmEntity = document.toObject(Movie::class.java)
                     filmEntity?.let { filmList.add(it) }
                 }
 

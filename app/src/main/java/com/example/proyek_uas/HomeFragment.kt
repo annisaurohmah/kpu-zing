@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyek_uas.databinding.FragmentHomeBinding
 import com.example.room1.database.MovieDao
-import com.example.room1.database.MovieR
+import com.example.room1.database.Movie
 import com.example.room1.database.MovieRoomDatabase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -194,10 +194,10 @@ class HomeFragment : Fragment() {
             }
 
             snapshot?.let { documents ->
-                val filmList = mutableListOf<MovieR>()
+                val filmList = mutableListOf<Movie>()
 
                 for (document in documents) {
-                    val filmEntity = document.toObject(MovieR::class.java)
+                    val filmEntity = document.toObject(Movie::class.java)
                     filmEntity?.let { filmList.add(it) }
                 }
 
@@ -213,7 +213,7 @@ class HomeFragment : Fragment() {
     private fun getAllMoviesM() {
         mMovieDao.allMovies.observe(requireActivity()) { notes ->
             listViewData.clear()
-            listViewData.addAll(convertMovieRListToMovieCollection(notes))
+            listViewData.addAll(notes)
             itemAdapter.notifyDataSetChanged()
 
             Log.d("ListActivity", "Number of notes: ${notes.size}")
@@ -222,27 +222,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    // Function to save the image locally and return the local path
-    fun convertMovieRToMovie(movieR: MovieR): Movie {
-        return Movie(
-            id = movieR.id,
-            title = movieR.title,
-            poster = movieR.poster,
-            rating = movieR.rating,
-            description = movieR.description,
-            director = movieR.director,
-            writer = movieR.writer,
-            star = movieR.star,
-            duration = movieR.duration,
-            isFavorite = movieR.isFavorite
-        )
-
-
-    }
-
-    fun convertMovieRListToMovieCollection(movieRList: List<MovieR>): Collection<Movie> {
-        return movieRList.map { convertMovieRToMovie(it) }
-    }
     override fun onResume() {
         super.onResume()
         fetchData()

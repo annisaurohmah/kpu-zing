@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.proyek_uas.Movie
 import com.example.proyek_uas.databinding.ItemLayoutBinding
+import com.example.room1.database.Movie
 
 
 class ListAdapter(private val context: Context, private val listData: List<Movie>, private val onClickData: (Movie) -> Unit) :

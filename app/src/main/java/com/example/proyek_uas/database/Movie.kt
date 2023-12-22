@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 //berbentuk struktural database
 @Entity(tableName = "movie_table")
-data class MovieR (
+data class Movie (
     @PrimaryKey
     @NonNull
     var id:String ="",

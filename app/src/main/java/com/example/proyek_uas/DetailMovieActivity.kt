@@ -53,8 +53,7 @@ class DetailMovieActivity : AppCompatActivity() {
                 onBackPressed()
             }
             movieCollectionRef.whereEqualTo("id", id).get()
-                .addOnCompleteListener{
-                        task ->
+                .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val movieDocuments = task.result?.documents
                         Log.d("Complete42", "$movieDocuments")
@@ -76,15 +75,17 @@ class DetailMovieActivity : AppCompatActivity() {
                             txtTitle.setText(title)
                             Glide.with(this@DetailMovieActivity).load(poster)
                                 .centerCrop().into(imagePoster)
-                            val rinci = durationLong.toString() + " minutes  |  ⭐ " + rating.toString() + " "
+                            val rinci =
+                                durationLong.toString() + " minutes  |  ⭐ " + rating.toString() + " "
                             textDes.setText(rinci)
                             txtDes.setText(description)
                             nameDirector.setText(director)
                             nameWriter.setText(writer)
-                            nameStar.setText(star)}}
+                            nameStar.setText(star)
+                        }
+                    }
 
                 }
-
             btnLove.setOnClickListener {
                 getFavoriteMovie(prefManager.getIdUser()) { favoriteMovies ->
                     // Use the favoriteMovies list here

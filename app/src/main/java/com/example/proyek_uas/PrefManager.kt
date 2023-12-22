@@ -2,6 +2,9 @@ package com.example.proyek_uas
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -122,6 +125,42 @@ class PrefManager private constructor(context: Context) {
                 }
             }
     }
+
+    fun isValidUsernamePassword(inputUsername: String, inputPassword:String, callback: (Boolean) -> Unit) {
+        val usersRef = FirebaseFirestore.getInstance().collection("users")
+        usersRef.whereEqualTo("username", inputUsername)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val userDocuments = task.result?.documents
+                    if (userDocuments != null && userDocuments.isNotEmpty()) {
+                        // Retrieve the first document (assuming usernames are unique)
+                        val userDocument = userDocuments[0]
+                        val email = userDocument.getString("email")
+                        val idUser = userDocument.getString("id")
+                        // Use Firebase Authentication to log in
+                        signInWithEmailPassword(email!!, inputPassword, inputUsername) { authTask, message ->
+                            if (authTask) {
+                                // Successfully logged in
+                                saveIdUser(idUser!!)
+                                callback(true)
+                                Log.d("Login", "${getIdUser()}")
+                            } else {
+                                // Failed to log in
+                                callback(false)
+                            }
+                        }
+                    } else {
+                        // User not found
+                        callback(false)
+                    }
+                } else {
+                    // Handle the case where the document is not found or other errors
+                    callback(false)
+                }
+            }
+    }
+
 
     fun signOut() {
         auth.signOut()

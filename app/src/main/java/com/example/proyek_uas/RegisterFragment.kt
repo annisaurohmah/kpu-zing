@@ -33,6 +33,7 @@ class RegisterFragment : Fragment() {
     //firebase
     private val firestore = FirebaseFirestore.getInstance()
     private val userCollectionRef = firestore.collection("users")
+    private lateinit var loginFragment: LoginFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,8 +105,6 @@ class RegisterFragment : Fragment() {
                             if (task) {
                                 // Authentication was successful
                                 val user = FirebaseAuth.getInstance().currentUser
-                                Log.d("MainAAA", "Successfully created user with uid: ${user?.uid}")
-
                                 // Proceed with registration
                                 val newUser = User(
                                     id = user?.uid ?: "", // Use safe call to handle potential null
@@ -113,10 +112,12 @@ class RegisterFragment : Fragment() {
                                     username = username,
                                     password = password
                                 )
-
                                 addData(newUser)
+                                prefManager.saveIdUser(user?.uid ?: "")
                                 prefManager.setLoggedIn(true)
                                 checkLoginStatus()
+
+                                Log.d("MainAAA", "${newUser}")
                             } else {
                                 // Authentication failed
                                 Log.d("MainAAA", "Failed to create user")
@@ -174,15 +175,10 @@ class RegisterFragment : Fragment() {
     }
 
     private fun addData(user: User) {
-        userCollectionRef.add(user)
+        userCollectionRef.document(user.id)
+            .set(user)
             .addOnSuccessListener { docRef ->
-                val createUserId = docRef.id
-                //id nya di update sesuai id yang berhasil
-                user.id = createUserId
-                docRef.set(user)
-                    .addOnFailureListener{
-                        Log.d("MainActivity2", "Error update user id", it)
-                    }
+                Log.d("MainActivity2", "Success add user id")
                 resetForm()
             }
             .addOnFailureListener{

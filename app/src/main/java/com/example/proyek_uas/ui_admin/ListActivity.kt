@@ -10,10 +10,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyek_uas.MainActivity
-import com.example.proyek_uas.Movie
 import com.example.proyek_uas.PrefManager
 import com.example.proyek_uas.R
 import com.example.proyek_uas.databinding.ActivityListBinding
+import com.example.room1.database.Movie
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ListActivity : AppCompatActivity() {

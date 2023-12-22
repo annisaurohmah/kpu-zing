@@ -73,11 +73,13 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.bind(view)
 
         with(binding) {
+
             if (prefManager.checkLoginStatus() && prefManager.getUsername() != "admin"){
                 (requireActivity() as? MainActivity)?.navigateToHomeActivity()
             } else if (prefManager.checkLoginStatus() && prefManager.getUsername() == "admin"){
                 (requireActivity() as? MainActivity)?.navigateToListActivity()
             }
+
             btnLogin.setOnClickListener {
                 val username = edtUsername.text.toString()
                 val password = edtPassword.text.toString()
@@ -88,76 +90,29 @@ class LoginFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    isValidUsernamePassword { isValid ->
-                        if (isValid) {
-                            // Username and password are valid, proceed with your logic
-
-                            prefManager.setLoggedIn(true)
-                            checkLoginStatus()
-
-                        } else {
-                            // Username and password are not valid
-                            Toast.makeText(requireContext(), "Invalid username", Toast.LENGTH_SHORT).show()
-
-                        }
-                    }
+                    loginActivity(username, password)
 
                 }
             }
 
         }
     }
-    private fun isValidUsernamePassword(callback: (Boolean) -> Unit) {
-        val inputUsername = binding.edtUsername.text.toString()
-        val inputPassword = binding.edtPassword.text.toString()
 
-        val usersRef = FirebaseFirestore.getInstance().collection("users")
-        usersRef.whereEqualTo("username", inputUsername)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val userDocuments = task.result?.documents
-                    if (userDocuments != null && userDocuments.isNotEmpty()) {
-                        // Retrieve the first document (assuming usernames are unique)
-                        val userDocument = userDocuments[0]
-                        val email = userDocument.getString("email")
-                        val idUser = userDocument.getString("id")
-                        // Use Firebase Authentication to log in
-                        prefManager.signInWithEmailPassword(email!!, inputPassword, inputUsername) { authTask, message ->
-                                if (authTask) {
-                                    // Successfully logged in
-                                    prefManager.saveIdUser(idUser!!)
-                                    callback(true)
-                                    Log.d("Login", "${prefManager.getIdUser()}")
-                                } else {
-                                    // Failed to log in
-                                    callback(false)
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Failed to log in",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
-                    } else {
-                        // User not found
-                        callback(false)
-                        Toast.makeText(
-                            requireContext(), "User not found",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                } else {
-                    // Handle the case where the document is not found or other errors
-                    callback(false)
-                    Toast.makeText(
-                        requireContext(), "Error retrieving user data",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+    private fun loginActivity(username:String, password: String) {
+        prefManager.isValidUsernamePassword(username, password) { isValid ->
+            if (isValid) {
+                // Username and password are valid, proceed with your logic
+                prefManager.setLoggedIn(true)
+                checkLoginStatus()
+
+            } else {
+                // Username and password are not valid
+                Toast.makeText(requireContext(), "Invalid username", Toast.LENGTH_SHORT).show()
+
             }
-    }
+        }
 
+    }
 
     private fun checkLoginStatus() {
         val isLoggedIn = prefManager.isLoggedIn()

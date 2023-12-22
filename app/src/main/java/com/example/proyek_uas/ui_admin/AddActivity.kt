@@ -8,9 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
-import com.example.proyek_uas.Movie
 import com.example.proyek_uas.databinding.ActivityAddBinding
+import com.example.room1.database.Movie
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat

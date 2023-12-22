@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 //import entity yg sudah dibuat
 //export schema bisa diakses dari folder atau mana
-@Database(entities = [MovieR::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class], version = 1, exportSchema = false)
 abstract class MovieRoomDatabase: RoomDatabase() {
     //CRUD lewat NodeDAO
     abstract fun nodeDao(): MovieDao?

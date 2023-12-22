@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyek_uas.databinding.ItemMovieBinding
+import com.example.room1.database.Movie
 
 class HomeAdapter(private val context: Context, private val listData: List<Movie>, private val onClickData: (Movie) -> Unit) :
     RecyclerView.Adapter<HomeAdapter.ItemDataViewHolder>() {
