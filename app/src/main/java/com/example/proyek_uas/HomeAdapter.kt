@@ -21,7 +21,6 @@ class HomeAdapter(private val context: Context, private val listData: List<Movie
                 rateElemental.text = "⭐ " + data.rating.toString()
                 Glide.with(context).load(data.poster)
                     .centerCrop().into(elemental)
-
                 // Atur listener untuk onClick
                 itemView.setOnClickListener {
                     onClickData(data)

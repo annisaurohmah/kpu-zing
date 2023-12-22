@@ -30,5 +30,6 @@ interface MovieDao {
 
     @Query("DELETE FROM movie_table")
     suspend fun deleteAllFilm()
+
 }
 

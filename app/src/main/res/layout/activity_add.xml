@@ -199,7 +199,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Director"
+                    android:text="Director(s)"
                     android:layout_marginHorizontal="10dp"
                     style="@style/title_18"
                     android:textColor="@color/yellow"/>
