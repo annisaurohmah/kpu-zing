@@ -28,31 +28,31 @@
             android:padding="15dp"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/titleTextView"
+                android:id="@+id/fullname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="Title"
+                android:text="Nama Lengkap"
                 android:textStyle="bold"
                 style="@style/title_20"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textColor="@color/yellow"/>
             <TextView
-                android:id="@+id/rating"
+                android:id="@+id/gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="Rating"
+                android:text="Gender"
                 style="@style/title_18"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"/>
             <TextView
-                android:id="@+id/duration"
+                android:id="@+id/registerdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="Duration"
+                android:text="Tanggal"
                 style="@style/title_18"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"/>

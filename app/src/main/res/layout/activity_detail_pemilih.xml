@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailDataActivity"
+    android:background="@color/darkBlue">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/navbar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="20dp"
+        android:gravity="center"
+        android:background="@color/darkBlue">
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/navbar_text"
+            app:layout_constraintTop_toTopOf="@id/navbar_text"
+            app:layout_constraintBottom_toBottomOf="@id/navbar_text"
+            android:src="@drawable/baseline_arrow_back_ios_new_24"/>
+        <TextView
+            android:id="@+id/navbar_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail Pemilih"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
+            style="@style/title_18" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/line_yellow"
+        app:layout_constraintTop_toBottomOf="@id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/yellow"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/line_yellow"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/darkBlue"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:id="@+id/nik"
+                    style="@style/title_20"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:text="NIK" />
+
+                <TextView
+                    android:id="@+id/text_nik"
+                    android:layout_below="@+id/nik"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="berapa"
+                    style="@style/text" />
+
+                <TextView
+                    android:id="@+id/fullname"
+                    style="@style/title_20"
+                    android:layout_below="@+id/text_nik"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:text="Nama Lengkap" />
+
+                <TextView
+                    android:id="@+id/text_fullname"
+                    android:layout_below="@+id/fullname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="berapa"
+                    style="@style/text" />
+                <TextView
+                    android:id="@+id/nohp"
+                    style="@style/title_20"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:text="No HP" />
+
+                <TextView
+                    android:id="@+id/text_nohp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="berapa"
+                    style="@style/text" />
+                <TextView
+                    android:id="@+id/gender"
+                    style="@style/title_20"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:text="Jenis Kelamin" />
+
+                <TextView
+                    android:id="@+id/text_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="berapa"
+                    style="@style/text" />
+                <TextView
+                    android:id="@+id/registerdate"
+                    style="@style/title_20"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:text="Tanggal" />
+
+                <TextView
+                    android:id="@+id/text_registerdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text" />
+                <TextView
+                    android:id="@+id/location"
+                    style="@style/title_20"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:text="Alamat" />
+
+                <TextView
+                    android:id="@+id/text_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text" />
+                <TextView
+                    android:id="@+id/picture"
+                    style="@style/title_20"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:text="Gambar" />
+
+                <ImageView
+                    android:id="@+id/image_poster"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/red"
+                    style="@style/title_18"
+                    android:textSize="14sp"
+                    android:layout_marginTop="20sp"
+                    android:text="Delete"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

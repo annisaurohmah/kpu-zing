@@ -4,85 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg1"
+    android:background="@color/darkBlue"
     android:paddingVertical="16dp"
     android:contentDescription="@string/app_name"
     tools:context=".LoginActivity">
 
 <!--    header with logo-->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_page"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/logo"
+        android:background="@color/darkBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/darkBlue">
+        app:layout_constraintTop_toTopOf="parent">
 
-<!--        line yellow-->
-        <View
-            android:id="@+id/line_yellow"
-            app:layout_constraintTop_toTopOf="@id/login_page"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@color/yellow"/>
-
-<!--        start login page-->
+        <!--        start login page-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/login_text"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_height="wrap_content"
+            android:layout_margin="36dp"
             android:paddingVertical="16dp"
-            android:layout_margin="36dp">
+            app:layout_constraintTop_toTopOf="parent">
 
-<!--            login title-->
+            <!--            login title-->
             <TextView
                 android:id="@+id/login_title"
+                style="@style/title_20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/login_text"
-                app:layout_constraintLeft_toLeftOf="@id/login_text"
                 android:text="Login"
-                style="@style/title_20"
                 android:textSize="24dp"
-                android:textStyle="bold"/>
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@id/login_text"
+                app:layout_constraintTop_toTopOf="@id/login_text" />
+
             <TextView
                 android:id="@+id/toContinue"
+                style="@style/title_18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/login_title"
-                app:layout_constraintLeft_toLeftOf="@id/login_text"
-                android:text="for Admin"
                 android:layout_marginBottom="48dp"
-                style="@style/title_18" />
+                android:text="for Admin"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="@id/login_text"
+                app:layout_constraintTop_toBottomOf="@id/login_title" />
 
-<!--            field for login-->
+            <!--            field for login-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/username"
                 style="@style/Theme.Design.Light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 app:hintEnabled="false"
-                android:layout_marginTop="32dp"
                 app:layout_constraintTop_toBottomOf="@id/toContinue">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/usernameField"
+                    android:id="@+id/emailField"
                     style="@style/MyTextInputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_dropdown"
-                    android:textColor="@color/darkBlue"
-                    android:hint="Username" />
+                    android:hint="Username"
+                    android:textColor="@color/darkBlue" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -94,14 +83,15 @@
                 app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@id/username"
                 app:passwordToggleEnabled="true">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordField"
                     style="@style/MyTextInputEditText"
-                    android:background="@drawable/custom_dropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/darkBlue"
-                    android:hint="Password" />
+                    android:background="@drawable/custom_dropdown"
+                    android:hint="Password"
+                    android:textColor="@color/darkBlue" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -110,47 +100,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/password"
-                android:text="Log In"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/blue"
                 android:fontFamily="@font/poppins_bold"
-                android:textStyle="bold"
-                android:textSize="16sp"
+                android:text="Log In"
                 android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/password"
                 tools:ignore="RtlHardcoded" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    footer for register as new account-->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:flow_horizontalAlign="center"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/login_page">
-        <TextView
-            android:id="@+id/text_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Don't have an account?"
-            android:layout_marginRight="5dp"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            style="@style/text"/>
-        <TextView
-            android:id="@+id/reg_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register as User"
-            android:layout_toRightOf="@+id/text_login"
-            style="@style/text"
-            android:textColor="@color/yellow"
-            android:textSize="14sp"
-            android:textStyle="bold"/>
-    </RelativeLayout>
+
 
 
 

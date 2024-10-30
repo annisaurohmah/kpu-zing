@@ -1,27 +1,43 @@
 <resources>
-    <string name="app_name">Ticket Flix</string>
-    <string name="desc_text">The film journeys alongside an unlikely pair, Ember and Wade, in a city where fire-, water-, land- and air-residents live together. The fiery young woman and the go-with-the-flow guy are about to discover something elemental: how much they actually have in common</string>
-    <string name="bycheck">By checking the box you agree to our</string>
-    <string name="term">Terms </string>
-    <string name="and">and</string>
-    <string name="condition"> Conditions. </string>
-    <string name="have">Sudah punya akun? </string>
-    <string name="login">Log in</string>
-    <string name="baru"> Belum punya akun?</string>
-    <string name="forgot">Forgot password ?</string>
-    <string name="remember">Remember me</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">KPU App 2</string>
+    <string name="app_welkom">Selamat Datang!</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="pw">Password</string>
+    <string name="placeh_email">Masukan Email</string>
+    <string name="placeh_pw">Masukan Password</string>
+    <string name="menu_1">Informasi</string>
+    <string name="menu_2">Form Entri Data Pemilih</string>
+    <string name="menu_3">Data Pemilih</string>
+    <string name="menu_3_1">Detail Data Pemilih</string>
+    <string name="menu_4">Keluar</string>
+    <string name="empty_message">Maaf, data pemilih belum tersedia, silakan input data pemilih terlebih dahulu</string>
+    <string name="button_input">Entri Data Pemilih</string>
+    <string name="button_submit">Submit</string>
+    <string name="nik">NIK</string>
+    <string name="nama_lengkap">Nama Lengkap </string>
+    <string name="nomor_hp">Nomor Handphone</string>
+    <string name="jenis_kel">Jenis Kelamin </string>
+    <string name="pr">Perempuan </string>
+    <string name="lk">Laki-laki </string>
+    <string name="tgl">Tanggal Pendataan </string>
+    <string name="loc">Lokasi/Alamat Rumah </string>
+    <string name="pic">Gambar Proses Pendataan</string>
+    <string name="titik2">:</string>
+
 
     <style name="textNav">
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:textColor">@color/yellow</item>
     </style>
+
     <style name="textNavB">
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="colorTao" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="backgroundTint">@color/grey</item>
         <item name="height">4dp</item>
@@ -40,13 +56,13 @@
     <style name="title_18">
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="title_20">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
-        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="WhiteSearchViewTheme" parent="Theme.AppCompat">
@@ -85,6 +101,8 @@
         <item name="android:backgroundTint">@color/whiteDark</item>
         <item name="android:paddingTop">16dp</item>
     </style>
+
+    <string name="title_activity_maps">MapsActivity</string>
 
 
 </resources>

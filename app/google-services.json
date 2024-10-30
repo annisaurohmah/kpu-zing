@@ -1,21 +1,22 @@
 {
   "project_info": {
-    "project_number": "660733653929",
-    "project_id": "proyek-uas-32382",
-    "storage_bucket": "proyek-uas-32382.appspot.com"
+    "project_number": "1034980878757",
+    "firebase_url": "https://kpuapp-47ebc-default-rtdb.firebaseio.com",
+    "project_id": "kpuapp-47ebc",
+    "storage_bucket": "kpuapp-47ebc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:660733653929:android:bd2eaf0c6f45a830c7cab8",
+        "mobilesdk_app_id": "1:1034980878757:android:96667f7cfeefe0fde0a04c",
         "android_client_info": {
-          "package_name": "com.example.proyek_uas"
+          "package_name": "com.example.kpu_app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAuOV7eqW6myJFXuPSzem3db4DqT5gtmCo"
+          "current_key": "AIzaSyAUb9iNj-fT5cyZuQrA36QTLze4CnCFmPs"
         }
       ],
       "services": {
